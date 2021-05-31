@@ -3,10 +3,12 @@ library(dplyr)
 library(ggplot2)
 
 data <- read.csv('../happiness.csv')
-# Define server logic required to draw a histogram
-shinyServer(function(input, output) {
 
-    output$distPlot <- renderPlot({
+shinyServer(function(input, output) {
+    
+    
+    #-------------------------- Start of Page 2 ----------------------------# 
+    output$component <- renderPlot({
         data <- data %>% 
             mutate(Year = factor(Year))
         ggplot(data, aes_string(x = input$component, y = "Score", color = "Year")) +
@@ -54,4 +56,6 @@ shinyServer(function(input, output) {
         , Freedom, and Corruption showed moderate correlations with happiness, Generosity was considered
         very low correlated.")
     })
+    
+    #----------------------------------End of Page2-------------------------------#
 })

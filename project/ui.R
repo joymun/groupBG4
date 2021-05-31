@@ -3,8 +3,8 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(
     navbarPage("Happiness Report",
-    tabPanel("Home"),
-    # Application title
+    tabPanel("Home"
+    ),
     tabPanel("What Most Influences Happiness",
              # Sidebar with a slider input for number of bins
              sidebarLayout(
@@ -21,14 +21,16 @@ shinyUI(
                  
                  # Show a plot of the generated distribution
                  mainPanel(
-                     plotOutput("distPlot"),
+                     plotOutput("component"),
                      htmlOutput("cor"),
                      plotOutput("corPlot"),
                      textOutput("summary")
                  ))
     ),
-    tabPanel("Happiness and Economy"),
-    tabPanel("Happiest Countries"),
+    tabPanel("Happiness and Economy"
+    ),
+    tabPanel("Happiest Countries"
+    ),
     tabPanel("Analysis")
 ))
 
