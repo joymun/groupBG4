@@ -5,6 +5,50 @@ library(ggplot2)
 data <- read.csv('../happiness.csv')
 
 shinyServer(function(input, output) {
+    #-------------------------- Start of Page 1 ----------------------------# 
+    output$overview <-renderText({
+        paste0("<h2> Project Overview</h2>
+               The report provides a broad summary of how different factors affect a country's happiness level. 
+               With the results, we hope to display what affects happiness levels the most in order to encourage 
+               policy changes that can lead to increase in happiness and increase overall awareness of the factors
+               that affect happiness. We also hope to test a popular belief of money leading to happiness.")
+    })
+    output$audience <- renderText({
+        paste0("<h3>Audience</h3>
+               We beleive that anyone in the general population can benefit from this report as much of the data
+               is harvested from polls (Cantril ladder poll) and the results may be more accurate if they have a 
+               better understanding of happiness levels prior to taking the poll. The general population can also take 
+               actions to encourage changes which may increase happiness levels. However, our target audience is people in government
+               positions who have power to make policy changes which can lead to much quicker changes and increase in happiness.")
+        
+    })
+    output$data <- renderText({
+        paste0("<h3>Data Set</h3>
+               We will be working with the <a href = https://www.kaggle.com/unsdsn/world-happiness?select=2016.csv>world happiness report</a> data set made by the Sustainable Development Solutions Network published
+               on kaggle. The dataset includes data from 2015 to 2019 and ranks 155 countries by their happiness levels. The happiness 
+               scores are based on answers from a poll (Cantril ladder). The poll mainly focuses on six factors and how they impact happiness. 
+               (economics, psychology, survey analysis, national statistics, health, public policy)
+               ")
+    })
+    output$questions <- renderText({
+        paste0("<h3>Questions</h3>
+               Some questions we focused on are:
+               <ul>
+                <li>Which component influences happiness the most?</li>
+                <li>How great of an impact does the economy have on the country’s happiness?</li>
+                <li>Which country’s happiness increased the most between 2015 and 2019?</li>
+               </ul>")
+    })
+    output$names <- renderText({
+        paste0("<h3>Creators</h3>
+               <ul>
+                <li>Ethan Oh</li>
+                <li>Christina Kuo</li>
+                <li>Joy Mun</li>
+                <li>Eli Lockard</li>
+               </ul>")
+    })
+    #--------------------------- End of Page 1 -----------------------------# 
     
     
     #-------------------------- Start of Page 2 ----------------------------# 

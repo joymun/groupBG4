@@ -3,7 +3,12 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(
     navbarPage("Happiness Report",
-    tabPanel("Home"
+    tabPanel("Home",
+         htmlOutput("overview"),
+         htmlOutput("audience"),
+         htmlOutput("data"),
+         htmlOutput("questions"),
+         htmlOutput("names")
     ),
     tabPanel("What Most Influences Happiness",
              # Sidebar with a slider input for number of bins
