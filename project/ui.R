@@ -32,34 +32,33 @@ shinyUI(
                      textOutput("summary")
                  ))
     ),
-    tabPanel("Happiness and Economy"
-    ),
-    tabPanel("Happiest Countries",
+    tabPanel("Happiness and Economy",
              # Sidebar with buttons to choose a year
              sidebarLayout(
                  sidebarPanel(
                      radioButtons("year", label = "Year",
-                              choices = list("2015" = 2015, "2016" = 2016, "2017" = 2017, "2018" = 2018, "2019" = 2019), 
-                              selected = 2015)
-                     ),
+                                  choices = list("2015" = 2015, "2016" = 2016, "2017" = 2017, "2018" = 2018, "2019" = 2019), 
+                                  selected = 2015)
+                 ),
                  
-                     # Show the tables
-                     mainPanel(
-                         textOutput("intro_text"),
-                         textOutput("happiest_text"),
-                         tableOutput("happiest"),
-                         textOutput("unhappiest_text"),
-                         tableOutput("unhappiest"),
-                         textOutput("gdp_text"),
-                         tableOutput("average_GDP"),
-                         textOutput("summary1_page4"),
-                         textOutput("summary2_page4"),
-                         textOutput("increase_text"),
-                         tableOutput("increase"),
-                         textOutput("summary3_page4")
-                     )
+                 # Show the tables
+                 mainPanel(
+                     textOutput("intro_text"),
+                     textOutput("happiest_text"),
+                     tableOutput("happiest"),
+                     textOutput("unhappiest_text"),
+                     tableOutput("unhappiest"),
+                     textOutput("gdp_text"),
+                     tableOutput("average_GDP"),
+                     textOutput("summary1_page4"),
+                     textOutput("summary2_page4"),
+                     textOutput("increase_text"),
+                     tableOutput("increase"),
+                     textOutput("summary3_page4")
+                 )
              )
     ),
-    tabPanel("Analysis")
+    tabPanel("Happiness Over Time"
+    )
 ))
 

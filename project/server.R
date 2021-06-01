@@ -103,7 +103,7 @@ shinyServer(function(input, output) {
     
     #----------------------------------End of Page2-------------------------------#
     
-    #----------------------------------Start of Page4-------------------------------#
+    #----------------------------------Start of Page 3-------------------------------#
     
     output$intro_text <- renderText({
         paste0("The table on this page can show the strong relationship between happiness and GDP of a country.")
@@ -173,5 +173,5 @@ shinyServer(function(input, output) {
                 Moreover, the happiness score is proportional to GDP in most cases.")
     })
     
-    #----------------------------------End of Page4-------------------------------#
+    #----------------------------------End of Page 3-------------------------------#
 })
