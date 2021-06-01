@@ -8,6 +8,7 @@ shinyUI(
          htmlOutput("audience"),
          htmlOutput("data"),
          htmlOutput("questions"),
+         htmlOutput("conclusion"),
          htmlOutput("names")
     ),
     tabPanel("What Most Influences Happiness",

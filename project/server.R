@@ -28,7 +28,10 @@ shinyServer(function(input, output) {
                on kaggle. The dataset includes data from 2015 to 2019 and ranks 155 countries by their happiness levels. The happiness 
                scores are based on answers from a poll (Cantril ladder). The poll mainly focuses on six factors and how they impact happiness. 
                (economics, psychology, survey analysis, national statistics, health, public policy)
-               ")
+               <br>Although the dataset contains more variables, we narrowed down the dataset and only utilized the following variables:
+               Country, Year, Happiness Score, GDP.per capita, Social.Support,
+               Healthy.life, Freedom.to.make.life.choices, Geneerosity, and  Percerptions of Corruption</br> By Narrowing down the number
+               of variables, we created a more consise report that provides a broad overview of happiness levels")
     })
     output$questions <- renderText({
         paste0("<h3>Questions</h3>
@@ -39,6 +42,10 @@ shinyServer(function(input, output) {
                 <li>Which country’s happiness increased the most between 2015 and 2019?</li>
                </ul>")
     })
+    output$conclusion <-renderText({
+        paste0("<h3>Conclusion</h3>")
+    })
+    
     output$names <- renderText({
         paste0("<h3>Creators</h3>
                <ul>
