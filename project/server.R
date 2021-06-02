@@ -181,4 +181,66 @@ shinyServer(function(input, output) {
     })
     
     #----------------------------------End of Page 3-------------------------------#
+    
+    #----------------------------------Start of Page 4-----------------------------#
+    
+    output$country_select <- renderUI({
+        countries <- data %>% 
+            filter(Country == unique(Country)) %>% 
+            arrange(by = Country)
+        selectInput("Country", label = "Countries", 
+                           choices = countries$Country, multiple = TRUE)
+    })
+    
+    countries_to_graph <- reactive({
+        data %>% 
+            filter(Country %in% input$Country)
+            
+    })
+    
+    world_avg <- data %>% 
+        group_by(Year) %>% 
+        mutate(number = n()) %>% 
+        mutate(Score = sum(Score) / number) %>% 
+        filter(Year == unique(Year)) %>% 
+        summarise(Country = "International", Year = unique(Year), Score) %>% 
+        distinct()
+    
+    output$happiness_over_time <- renderPlot({
+        ggplot(countries_to_graph(), aes(Year, Score, col = Country))+
+            geom_line(data = world_avg, size = 2)+
+            geom_line(size = 2)+
+            labs(title = "Happiness Scores Over Time", y = "Happiness Score")
+    })
+    
+    data_wide <- data %>% 
+        select(Overall.rank, Country, Year, Score) %>% 
+        pivot_wider(names_from = Year, values_from = c(Score, Overall.rank)) %>% 
+        mutate(Score_Change = Score_2019 - Score_2015)
+    
+    
+    output$largest_increase <- renderTable({
+        increase <- data_wide %>%
+            select(Country, Score_2015, Score_2019, Overall.rank_2015, Overall.rank_2019, Score_Change) %>% 
+            arrange(desc(Score_Change)) %>% 
+            head(5)
+    })
+    
+    output$largest_decrease <- renderTable({
+        decrease <- data_wide %>%
+            select(Country, Score_2015, Score_2019, Overall.rank_2015, Overall.rank_2019, Score_Change) %>% 
+            arrange(Score_Change) %>% 
+            head(5)
+    })
+    
+    output$inc_text <- renderText({
+        paste0("\n", "The Five Countries With the largest increase in Happiness Score over the Observed Time period")
+    })
+    
+    
+    output$dec_text <- renderText({
+        paste0("\n", "The Five Countries With the largest decrease in Happiness Score over the Observed Time period")
+    })
+    
+    #----------------------------------End of Page 4-------------------------------#
 })

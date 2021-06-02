@@ -59,7 +59,20 @@ shinyUI(
                  )
              )
     ),
-    tabPanel("Happiness Over Time"
+    tabPanel("Happiness Over Time",
+             sidebarLayout(
+                 sidebarPanel(
+                     uiOutput("country_select")
+                 ),
+                 
+                 mainPanel(
+                     plotOutput("happiness_over_time"),
+                     textOutput("inc_text"),
+                     tableOutput("largest_increase"),
+                     textOutput("dec_text"),
+                     tableOutput("largest_decrease")
+                 )
+             )
     )
 ))
 
