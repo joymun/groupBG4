@@ -11,6 +11,21 @@ shinyUI(
          htmlOutput("conclusion"),
          htmlOutput("names")
     ),
+    tabPanel("Happiness Over Time",
+             sidebarLayout(
+                 sidebarPanel(
+                     uiOutput("country_select")
+                 ),
+                 
+                 mainPanel(
+                     plotOutput("happiness_over_time"),
+                     textOutput("inc_text"),
+                     tableOutput("largest_increase"),
+                     textOutput("dec_text"),
+                     tableOutput("largest_decrease")
+                 )
+             )
+    ),
     tabPanel("What Most Influences Happiness",
              # Sidebar with a slider input for number of bins
              sidebarLayout(
@@ -56,21 +71,6 @@ shinyUI(
                      textOutput("increase_text"),
                      tableOutput("increase"),
                      textOutput("summary3_page4")
-                 )
-             )
-    ),
-    tabPanel("Happiness Over Time",
-             sidebarLayout(
-                 sidebarPanel(
-                     uiOutput("country_select")
-                 ),
-                 
-                 mainPanel(
-                     plotOutput("happiness_over_time"),
-                     textOutput("inc_text"),
-                     tableOutput("largest_increase"),
-                     textOutput("dec_text"),
-                     tableOutput("largest_decrease")
                  )
              )
     )

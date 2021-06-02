@@ -1,5 +1,6 @@
 library(shiny)
 library(dplyr)
+library(tidyverse)
 library(ggplot2)
 
 data <- read.csv('../happiness.csv')
@@ -58,7 +59,7 @@ shinyServer(function(input, output) {
     #--------------------------- End of Page 1 -----------------------------# 
     
     
-    #-------------------------- Start of Page 2 ----------------------------# 
+    #-------------------------- Start of Page 3 ----------------------------# 
     output$component <- renderPlot({
         data <- data %>% 
             mutate(Year = factor(Year))
@@ -108,9 +109,9 @@ shinyServer(function(input, output) {
         very low correlated.")
     })
     
-    #----------------------------------End of Page2-------------------------------#
+    #----------------------------------End of Page 3-------------------------------#
     
-    #----------------------------------Start of Page 3-------------------------------#
+    #----------------------------------Start of Page 4-------------------------------#
     
     output$intro_text <- renderText({
         paste0("The table on this page can show the strong relationship between happiness and GDP of a country.")
@@ -155,20 +156,20 @@ shinyServer(function(input, output) {
                while the GDP of the least happy countries are lower than the average GDP.")
     })
     
-    output$increase_text <- renderText({
-        paste0("Table of Countries that their happiness incresed the most between 2015 and 2019")
-    })
-    
     output$summary2_page4 <- renderText({
         paste0("Additionally, we summarized the growth of the score and GDP of each country between 2015 and 2019. 
                We found that the five countries that have the most increase on happiness have either the same GDP
                or a rising GDP.")
     })
     
+    output$increase_text <- renderText({
+        paste0("Table of Countries that their happiness increased the most between 2015 and 2019")
+    })
+    
     output$increase <- renderTable({
         increase <- data %>% 
             select(Year, Overall.rank, Country, Score, GDP.per.capita) %>% 
-            filter(Year == c(2015, 2019)) %>% 
+            filter(Year == 2015|Year == 2019) %>%
             group_by(Country) %>% 
             summarize(Growth = Score - lag(Score), GDP_growth = GDP.per.capita - lag(GDP.per.capita)) %>% 
             arrange(desc(Growth)) %>% 
@@ -180,9 +181,9 @@ shinyServer(function(input, output) {
                 Moreover, the happiness score is proportional to GDP in most cases.")
     })
     
-    #----------------------------------End of Page 3-------------------------------#
+    #----------------------------------End of Page 4-------------------------------#
     
-    #----------------------------------Start of Page 4-----------------------------#
+    #----------------------------------Start of Page 2-----------------------------#
     
     output$country_select <- renderUI({
         countries <- data %>% 
@@ -242,5 +243,5 @@ shinyServer(function(input, output) {
         paste0("\n", "The Five Countries With the largest decrease in Happiness Score over the Observed Time period")
     })
     
-    #----------------------------------End of Page 4-------------------------------#
+    #----------------------------------End of Page 2-------------------------------#
 })
