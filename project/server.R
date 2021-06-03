@@ -9,8 +9,8 @@ shinyServer(function(input, output) {
     #-------------------------- Start of Page 1 ----------------------------# 
     #image of the world happiness report logo for the home page
     output$logo <- renderImage({
-        list(src = "pic/happy.png", height = 400,align = "left")
-    })
+        list(src = "pic/happy.png", height = 400,align = "left")}, deleteFile = TRUE)
+    
     output$overview <-renderText({
         paste0("<h2> Project Overview</h2>
                The report provides a broad summary of how different factors affect a country's happiness level. 
@@ -64,8 +64,8 @@ shinyServer(function(input, output) {
     })
     #image of a map showcasing happiness level in 2015 by vox, appears on conclusion page
     output$map <- renderImage({
-        list(src = "pic/map.png", height = 400,align = "left")
-    })
+        list(src = "pic/map.png", height = 400,align = "left", deleteFile=TRUE)}, deleteFile = TRUE)
+
     output$names <- renderText({
         paste0("<h3>Creators</h3>
                <ul>
