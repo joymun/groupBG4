@@ -4,11 +4,11 @@ library(shiny)
 shinyUI(
     navbarPage("Happiness Report",
     tabPanel("Home",
+         imageOutput("logo"),
          htmlOutput("overview"),
          htmlOutput("audience"),
          htmlOutput("data"),
          htmlOutput("questions"),
-         htmlOutput("conclusion"),
          htmlOutput("names")
     ),
     tabPanel("Happiness Over Time",
@@ -73,6 +73,10 @@ shinyUI(
                      textOutput("summary3_page4")
                  )
              )
+    ),
+    tabPanel("Conclusion",
+             imageOutput("map"),
+             htmlOutput("conclusion")
     )
 ))
 

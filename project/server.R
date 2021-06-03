@@ -3,10 +3,14 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 
-data <- read.csv('../happiness.csv')
+data <- read.csv('data/happiness.csv')
 
 shinyServer(function(input, output) {
     #-------------------------- Start of Page 1 ----------------------------# 
+    #image of the world happiness report logo for the home page
+    output$logo <- renderImage({
+        list(src = "pic/happy.png", height = 400,align = "left")
+    })
     output$overview <-renderText({
         paste0("<h2> Project Overview</h2>
                The report provides a broad summary of how different factors affect a country's happiness level. 
@@ -44,9 +48,24 @@ shinyServer(function(input, output) {
                </ul>")
     })
     output$conclusion <-renderText({
-        paste0("<h3>Conclusion</h3>")
+        paste0("<ul>
+            
+            <li>From our data, we found that wealth (GDP) has the greates impact on happiness and generosity had the lowest impact.
+            This can be seen in the countriees that had the most increase in happiness in the five years and their
+             GDP growth shown in the tables in the Happiness and Economy tab. However, it may be difficult to implement changes that 
+               will immmedietly cause a large increase in wealth. So while our original goal was to encouraage change 
+               that will result in increased happiness, this may not be possible with only the data from the happiness report</li>
+            <li>Although the World Happiness Report states that it does its best to remain unbaised, the way that
+               the questions are phrased on the poll may show a cultural bias as it can emphasize western preferences
+               and values. This may explain why countries that have lower GDP and seem to have a majority of happy citizens
+               apppear much lower in happiness rank than what one may expect.</li>
+            <li>With additional research and data of the specific country and its sitation, the project may be able to showcase
+            possible initiatives that will improve overall happiness. ")
     })
-    
+    #image of a map showcasing happiness level in 2015 by vox, appears on conclusion page
+    output$map <- renderImage({
+        list(src = "pic/map.png", height = 400,align = "left")
+    })
     output$names <- renderText({
         paste0("<h3>Creators</h3>
                <ul>
