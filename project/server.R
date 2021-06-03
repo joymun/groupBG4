@@ -35,7 +35,7 @@ shinyServer(function(input, output) {
                (economics, psychology, survey analysis, national statistics, health, public policy)
                <br>Although the dataset contains more variables, we narrowed down the dataset and only utilized the following variables:
                Country, Year, Happiness Score, GDP.per capita, Social.Support,
-               Healthy.life, Freedom.to.make.life.choices, Geneerosity, and  Percerptions of Corruption</br> By Narrowing down the number
+               Healthy.life, Freedom.to.make.life.choices, Generosity, and  Percerptions of Corruption</br> By Narrowing down the number
                of variables, we created a more consise report that provides a broad overview of happiness levels")
     })
     output$questions <- renderText({
