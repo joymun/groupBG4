@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
             <li>From our data, we found that wealth (GDP) has the greates impact on happiness and generosity had the lowest impact.
             This can be seen in the countriees that had the most increase in happiness in the five years and their
              GDP growth shown in the tables in the Happiness and Economy tab. However, it may be difficult to implement changes that 
-               will immmedietly cause a large increase in wealth. So while our original goal was to encouraage change 
+               will immmedietly cause a large increase in wealth. So while our original goal was to encourage change 
                that will result in increased happiness, this may not be possible with only the data from the happiness report</li>
             <li>Although the World Happiness Report states that it does its best to remain unbaised, the way that
                the questions are phrased on the poll may show a cultural bias as it can emphasize western preferences
