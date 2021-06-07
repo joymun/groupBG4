@@ -5,7 +5,7 @@
 the happiness level of a country. The app report data based on these six factors: Country,
 Year, Happiness Score, GDP per capita, Social Support, Healthy Life, Freedom to make life choices, 
 Generosity, and Perceptions of Corruption. Through graphs and tables, the report displays information
-on the factors that influence happiness the most, how happiness is affected by economu, and happiness over time.
+on the factors that influence happiness the most, how happiness is affected by economy, and happiness over time.
 
 ## Happiness Over Time
 
