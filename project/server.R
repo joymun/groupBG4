@@ -79,6 +79,7 @@ shinyServer(function(input, output) {
     
     
     #-------------------------- Start of Page 3 ----------------------------# 
+    ## Plot and text showing the relationship between happiness score and the input component
     output$component <- renderPlot({
         data <- data %>% 
             mutate(Year = factor(Year))
@@ -105,6 +106,7 @@ shinyServer(function(input, output) {
                input$component, " was ", cor.test,".", result, sep = "<br/>"))
     })
     
+    ## Data frame for correlation coefficient of each component
     GDP.test <- cor(data$GDP.per.capita, data$Score)
     SS.test <- cor(data$Social.support, data$Score)
     Health.test <- cor(data$Healthy.life.expectancy, data$Score)
@@ -115,6 +117,7 @@ shinyServer(function(input, output) {
     cor.num <- c(GDP.test, SS.test, Health.test, Freedom.test, Generosity.test, Corruption.test)
     df <- data.frame(components,cor.num)
     
+    ## Plot and text for the correlation coefficient of each component
     output$corPlot <- renderPlot({
         ggplot(df)+
             geom_col(aes(reorder(components,cor.num),cor.num, fill = components)) +
@@ -206,6 +209,7 @@ shinyServer(function(input, output) {
     
     #----------------------------------Start of Page 2-----------------------------#
     
+    ## Left widget for selecting countries
     output$country_select <- renderUI({
         countries <- data %>% 
             filter(Country == unique(Country)) %>% 
@@ -214,12 +218,14 @@ shinyServer(function(input, output) {
                            choices = countries$Country, multiple = TRUE)
     })
     
+    ## Filtering out the country name from input
     countries_to_graph <- reactive({
         data %>% 
             filter(Country %in% input$Country)
             
     })
     
+    ## Data frame including the average of world happiness score
     world_avg <- data %>% 
         group_by(Year) %>% 
         mutate(number = n()) %>% 
@@ -228,6 +234,7 @@ shinyServer(function(input, output) {
         summarise(Country = "International", Year = unique(Year), Score) %>% 
         distinct()
     
+    ## Plot for happiness over time
     output$happiness_over_time <- renderPlot({
         ggplot(countries_to_graph(), aes(Year, Score, col = Country))+
             geom_line(data = world_avg, size = 2)+
@@ -235,12 +242,13 @@ shinyServer(function(input, output) {
             labs(title = "Happiness Scores Over Time", y = "Happiness Score")
     })
     
+    ## Convert to wide data
     data_wide <- data %>% 
         select(Overall.rank, Country, Year, Score) %>% 
         pivot_wider(names_from = Year, values_from = c(Score, Overall.rank)) %>% 
         mutate(Score_Change = Score_2019 - Score_2015)
     
-    
+    ## Table for largest increase
     output$largest_increase <- renderTable({
         increase <- data_wide %>%
             select(Country, Score_2015, Score_2019, Overall.rank_2015, Overall.rank_2019, Score_Change) %>% 
@@ -248,6 +256,7 @@ shinyServer(function(input, output) {
             head(5)
     })
     
+    ## Table for largest decrease
     output$largest_decrease <- renderTable({
         decrease <- data_wide %>%
             select(Country, Score_2015, Score_2019, Overall.rank_2015, Overall.rank_2019, Score_Change) %>% 
@@ -255,11 +264,12 @@ shinyServer(function(input, output) {
             head(5)
     })
     
+    ## Text for largest increase
     output$inc_text <- renderText({
         paste0("\n", "The Five Countries With the largest increase in Happiness Score over the Observed Time period")
     })
     
-    
+    ## Text for largest decrease
     output$dec_text <- renderText({
         paste0("\n", "The Five Countries With the largest decrease in Happiness Score over the Observed Time period")
     })
