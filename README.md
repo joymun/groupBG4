@@ -7,6 +7,8 @@ Year, Happiness Score, GDP per capita, Social Support, Healthy Life, Freedom to 
 Generosity, and Perceptions of Corruption. Through graphs and tables, the report displays information
 on the factors that influence happiness the most, how happiness is affected by economy, and happiness over time.
 
+URL: [Link to the app](https://ckuo2001.shinyapps.io/Happiness_Report/)
+
 ## Happiness Over Time
 
 ### Side Panel
