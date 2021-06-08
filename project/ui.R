@@ -14,13 +14,17 @@ shinyUI(
     tabPanel("Happiness Over Time",
              sidebarLayout(
                  sidebarPanel(
+                     #drop down country selection widget
                      uiOutput("country_select")
                  ),
                  
                  mainPanel(
+                     # show a plot that graphs happiness of the chosen countries over time
                      plotOutput("happiness_over_time"),
                      textOutput("inc_text"),
+                     # shows table with the five countries with the largest increase in happiness
                      tableOutput("largest_increase"),
+                     # shows table with the five countries with the largest decrease in happiness
                      textOutput("dec_text"),
                      tableOutput("largest_decrease")
                  )
